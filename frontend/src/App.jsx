@@ -3,6 +3,7 @@ import Home from "./components/Home";
 import Navbar from "./components/Navbar";
 import MovieList from "./components/MovieList";
 import BookingPage from "./components/BookingPage";
+import MyBookingsPage from "./components/MyBookingsPage";
 import "./App.css";
 
 export default function App() {
@@ -13,31 +14,44 @@ export default function App() {
     errorElement: <div>Page Not Found!</div>,
   },
   {
-      path: "/home",
-      element: (
-        <>
-          <Navbar />
-          <Home />
-        </>
-      ),
-    },
-  {
-      path: "/movies",
-      element: (
+    path: "/home",
+    element: (
       <>
-          <Navbar />
-          <MovieList />
+        <Navbar />
+        <Home />
       </>
-      ),
+    ),
   },
   {
-      path: "/booking",
-      element: (
-      <>
-          <Navbar />
-          <BookingPage />
-      </>
-      ),
+      path: "/book/:id",
+      element: <BookingPage />,
+    },
+  {
+    path: "/movies",
+    element: (
+    <>
+        <Navbar />
+        <MovieList />
+    </>
+    ),
+  },
+  {
+    path: "/booking",
+    element: (
+    <>
+        <Navbar />
+        <BookingPage />
+    </>
+    ),
+  },
+  {
+    path: "/mybookings",
+    element: (
+    <>
+        <Navbar />
+        <MyBookingsPage />
+    </>
+    ),
   },
   {
     path: "*", 
