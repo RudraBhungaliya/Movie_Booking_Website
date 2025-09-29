@@ -7,7 +7,7 @@ export default function Navbar() {
         🎬 Moviex
       </Link>
       <div className="flex gap-6 items-center text-lg">
-        <Link to="/bookings" className="hover:text-yellow-200 font-semibold">
+        <Link to="/mybookings" className="hover:text-yellow-200 font-semibold">
           My Bookings
         </Link>
         

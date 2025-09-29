@@ -6,26 +6,23 @@ export default function BookingPage() {
   const { id } = useParams();
   const movie = movies.find((m) => m.id === parseInt(id));
 
-  if (!movie) {
-    return (
-      <>
-        <Navbar />
-        <div className="text-center p-10">
-          <h2 className="text-3xl font-bold">Movie not found!</h2>
-        </div>
-      </>
-    );
-  }
-
   return (
-    <>
-      <div className="container mx-auto p-8">
-        <div className="mb-10">
-          <h1 className="text-4xl font-bold">{movie.title}</h1>
-          <p className="text-lg text-gray-500 mt-2">{movie.genre}</p>
+    <div className="container mx-auto p-8">
+      <div className="flex flex-col md:flex-row gap-8">
+        <div className="flex-col items-center md:items-start">
+          <h1 className="text-4xl font-bold mb-4 text-center md:text-left">{movie.title}</h1>
+          <img
+            src={`/assets/${movie.filename}`}
+            alt={movie.title}
+            className="w-full h-96 object-contain rounded-xl shadow-lg mb-4"
+          />
+          <p className="text-lg text-gray-500 text-center md:text-left">{movie.genre}</p>
         </div>
-        <SeatSelector movie={movie} />
+
+        <div className="md:w-2/3 flex flex-col items-center md:items-start">
+          <SeatSelector movie={movie} />
+        </div>
       </div>
-    </>
+    </div>
   );
 }

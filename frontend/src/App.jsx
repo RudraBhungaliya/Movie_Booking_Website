@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import MovieList from "./components/MovieList";
 import BookingPage from "./components/BookingPage";
 import MyBookingsPage from "./components/MyBookingsPage";
+import Footer from './components/Footer';
 import "./App.css";
 
 export default function App() {
@@ -19,19 +20,27 @@ export default function App() {
       <>
         <Navbar />
         <Home />
+        <Footer />
       </>
     ),
   },
   {
-      path: "/book/:id",
-      element: <BookingPage />,
+      path: "/book/:id",// useparam
+      element: (
+        <>
+          <Navbar />
+          <BookingPage />
+          <Footer />
+        </>
+      )
     },
   {
     path: "/movies",
     element: (
     <>
-        <Navbar />
-        <MovieList />
+      <Navbar />
+      <MovieList />
+      <Footer />
     </>
     ),
   },
@@ -39,8 +48,9 @@ export default function App() {
     path: "/booking",
     element: (
     <>
-        <Navbar />
-        <BookingPage />
+      <Navbar />
+      <BookingPage />
+      <Footer />
     </>
     ),
   },
@@ -48,8 +58,9 @@ export default function App() {
     path: "/mybookings",
     element: (
     <>
-        <Navbar />
-        <MyBookingsPage />
+      <Navbar />
+      <MyBookingsPage />
+      <Footer />
     </>
     ),
   },
