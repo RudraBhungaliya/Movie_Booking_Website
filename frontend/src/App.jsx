@@ -35,7 +35,7 @@ export default function App() {
       element: <LoginForm />,
     },
     {
-      path: "/book/:id",
+      path: "/book/:id",// useparam
       element: (
         <>
           <Navbar />

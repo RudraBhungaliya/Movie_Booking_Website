@@ -138,13 +138,12 @@ export default function SeatSelector({ movie }) {
                           key={seat}
                           onClick={() => toggleSeat(seat)}
                           disabled={isBooked}
-                          className={`w-9 h-9 rounded-md text-xs transition-all shadow-sm ${
-                            isBooked
+                          className={`w-9 h-9 rounded-md text-xs transition-all shadow-sm ${isBooked
                               ? "bg-red-400 cursor-not-allowed opacity-60"
                               : isSelected
-                              ? "bg-green-500 hover:bg-green-600 text-white shadow-md"
-                              : "bg-gray-200 hover:bg-gray-300 text-gray-700"
-                          }`}
+                                ? "bg-green-500 hover:bg-green-600 text-white shadow-md"
+                                : "bg-gray-200 hover:bg-gray-300 text-gray-700"
+                            }`}
                         >
                           {seat}
                         </button>
