@@ -62,3 +62,6 @@ insert into seats (seat_number, seat_type, price) values
 
 ('E1','vip',500),('E2','vip',500),('E3','vip',500),('E4','vip',500),
 ('E5','vip',500),('E6','vip',500),('E7','vip',500),('E8','vip',500);
+
+SELECT * FROM movies;
+SELECT * FROM seats;

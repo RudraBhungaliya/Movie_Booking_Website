@@ -19,7 +19,11 @@ export default function MyBookingsPage() {
           {bookings.map((b, i) => (
             <li key={i} className="bg-white shadow rounded-lg p-4">
               <h2 className="text-xl font-semibold">{b.title}</h2>
+              <p className="text-gray-600">Timing: {b.time || "-"}</p>
+              <p className="text-gray-600">Screen: {b.screen || "-"}</p>
               <p className="text-gray-600">Seats: {b.seats.join(", ")}</p>
+              <p className="text-gray-400 text-sm mt-1">{new Date(b.timestamp).toLocaleString()}</p>
+              <p className="text-green-600 font-bold mt-1">  Amount: {b.amount ? `₹${b.amount} /-` : "0 /-"} </p>
             </li>
           ))}
         </ul>

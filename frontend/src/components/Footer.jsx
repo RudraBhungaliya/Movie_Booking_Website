@@ -7,9 +7,6 @@ export default function Footer() {
         <p className="text-sm">
           © {new Date().getFullYear()} CineBook. All rights reserved.
         </p>
-        <p className="text-xs mt-2">
-          Built with 🍿 and ❤️ for movie lovers everywhere.
-        </p>
       </div>
     </footer>
   );
