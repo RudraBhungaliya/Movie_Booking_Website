@@ -19,7 +19,6 @@ export async function initDB() {
   return connection;
 }
 
-// Optional test if run directly
 if (process.argv[1].endsWith('database.js')) {
   (async () => {
     try {

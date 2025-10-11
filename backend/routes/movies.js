@@ -3,8 +3,6 @@ import { initDB } from '../database.js';
 
 const router = express.Router();
 
-// This route finds a single movie by its ID
-// GET /movies/1, GET /movies/2, etc.
 router.get('/:id', async (req, res) => {
   try {
     const conn = await initDB();

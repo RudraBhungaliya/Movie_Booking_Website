@@ -1,5 +1,3 @@
-// src/components/LoginForm.jsx
-
 import { useState, useEffect } from "react";
 import { signInWithProvider, getUser } from "../supabase/auth";
 import { useNavigate } from "react-router-dom";
@@ -11,7 +9,6 @@ export default function LoginForm() {
 
   const navigate = useNavigate();
 
-  // fetch current user on mount
   useEffect(() => {
     async function fetchUser() {
       const { data } = await getUser();
@@ -34,7 +31,7 @@ export default function LoginForm() {
         setError(error.message);
       } else {
         await refreshUser();
-        navigate("/"); // redirect after login
+        navigate("/"); 
       }
     } catch (err) {
       setError("Google login failed. Try again.");
@@ -44,11 +41,11 @@ export default function LoginForm() {
 
   return (
     <div className="max-w-md mx-auto mt-20 p-8 bg-white rounded-xl shadow-lg">
-      {/* Avatar section */}
+  
       <div className="flex flex-col items-center">
         {!user ? (
           <img
-            src="/default-avatar.png" // put your default image in /public
+            src="/default-avatar.png" 
             alt="Default Avatar"
             className="w-16 h-16 rounded-full mb-4"
           />

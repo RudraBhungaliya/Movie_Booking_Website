@@ -1,9 +1,9 @@
-import express from 'express';
-import { initDB } from '../database.js';
+import express from "express";
+import { initDB } from "../database.js";
 
 const router = express.Router();
 
-router.get('/list', async (req, res) => {
+router.get("/list", async (req, res) => {
   try {
     const conn = await initDB();
     const sql = `
@@ -21,15 +21,32 @@ router.get('/list', async (req, res) => {
     res.json({ success: true, bookings: rows });
   } catch (err) {
     console.error("Database Error in /list:", err);
-    res.status(500).json({ success: false, error: 'Database error' });
+    res.status(500).json({ success: false, error: "Database error" });
   }
 });
 
-router.post('/add', async (req, res) => {
-  const { user_id, movie_id, screen_id, show_datetime, seats, number_of_tickets, total_amount } = req.body;
+router.post("/add", async (req, res) => {
+  const {
+    user_id,
+    movie_id,
+    screen_id,
+    show_datetime,
+    seats,
+    number_of_tickets,
+    total_amount,
+  } = req.body;
 
-  if (!user_id || !movie_id || !screen_id || !show_datetime || !seats || seats.length === 0) {
-    return res.status(400).json({ success: false, error: 'Missing required fields' });
+  if (
+    !user_id ||
+    !movie_id ||
+    !screen_id ||
+    !show_datetime ||
+    !seats ||
+    seats.length === 0
+  ) {
+    return res
+      .status(400)
+      .json({ success: false, error: "Missing required fields" });
   }
 
   const conn = await initDB();
@@ -39,7 +56,14 @@ router.post('/add', async (req, res) => {
       INSERT INTO bookings (user_id, movie_id, screen_id, show_datetime, number_of_tickets, total_amount, booking_status)
       VALUES (?, ?, ?, ?, ?, ?, 'Confirmed')
     `;
-    const [bookingResult] = await conn.execute(bookingSql, [user_id, movie_id, screen_id, show_datetime, number_of_tickets, total_amount]);
+    const [bookingResult] = await conn.execute(bookingSql, [
+      user_id,
+      movie_id,
+      screen_id,
+      show_datetime,
+      number_of_tickets,
+      total_amount,
+    ]);
     const bookingId = bookingResult.insertId;
 
     const seatSql = `INSERT INTO booked_seats (booking_id, seat_number) VALUES (?, ?)`;
@@ -51,7 +75,9 @@ router.post('/add', async (req, res) => {
   } catch (err) {
     await conn.rollback();
     console.error("Database Error in /add:", err);
-    res.status(500).json({ success: false, error: 'Database error', details: err.message });
+    res
+      .status(500)
+      .json({ success: false, error: "Database error", details: err.message });
   }
 });
 

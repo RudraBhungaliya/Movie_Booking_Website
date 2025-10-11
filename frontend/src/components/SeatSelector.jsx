@@ -25,7 +25,7 @@ export default function SeatSelector({ movie }) {
       return alert("Please select seats, timing and screen!");
     }
 
-    const userId = 2; // User 2 exists from the SQL script.
+    const userId = 2;
 
     const today = new Date();
     const [hourMin, meridian] = selectedTime.split(" ");
@@ -34,15 +34,14 @@ export default function SeatSelector({ movie }) {
     if (meridian === "AM" && hour === 12) hour = 0;
     const show_datetime = new Date(today.getFullYear(), today.getMonth(), today.getDate(), hour, minute).toISOString().slice(0, 19).replace("T", " ");
 
-    // THIS IS THE CORRECT DATA OBJECT THAT MATCHES THE BACKEND
     const bookingData = {
       user_id: userId,
-      movie_id: movie.movie_id,      // FIX: Use movie.movie_id
+      movie_id: movie.movie_id,
       screen_id: screens.indexOf(selectedScreen) + 1,
       show_datetime,
       number_of_tickets: selected.length,
       total_amount: totalAmount,
-      seats: selected,             // THIS LINE FIXES THE "Missing required fields" ERROR
+      seats: selected,
       booking_status: 'Confirmed'
     };
 
@@ -57,7 +56,7 @@ export default function SeatSelector({ movie }) {
       const data = await res.json();
       if (data.success) {
         alert(`Booking confirmed for ${movie.title}!`);
-        navigate('/mybookings'); 
+        navigate('/mybookings');
       } else {
         alert(`Booking failed! ${data.details || data.error}`);
       }
@@ -71,11 +70,11 @@ export default function SeatSelector({ movie }) {
     <div className="min-h-screen bg-white flex justify-center items-start p-6">
       <div className="max-w-5xl w-full">
         <div className="flex flex-col md:flex-row gap-6 mb-6 items-center md:items-start">
-        <img
-  src={`/assets/${movie.poster_image_url}`}
-  alt={movie.title}
-  className="w-48 h-64 object-cover rounded-lg shadow-md"
-/>
+          <img
+            src={`/assets/${movie.poster_image_url}`}
+            alt={movie.title}
+            className="w-48 h-64 object-cover rounded-lg shadow-md"
+          />
           <div>
             <h1 className="text-2xl font-bold mb-2">{movie.title}</h1>
             {movie.genre && (

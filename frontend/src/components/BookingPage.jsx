@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import SeatSelector from './SeatSelector'; // Using your component folder structure
+import SeatSelector from './SeatSelector';
 
 export default function BookingPage() {
-  const { id } = useParams(); // FIX: Use 'id' to match your router path "/book/:id"
+  const { id } = useParams(); 
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -11,7 +11,7 @@ export default function BookingPage() {
   useEffect(() => {
     async function fetchMovieData() {
       try {
-        const res = await fetch(`http://localhost:5000/movies/${id}`); // FIX: Use 'id' in the fetch URL
+        const res = await fetch(`http://localhost:5000/movies/${id}`);
         if (!res.ok) {
           throw new Error('Movie not found in the database.');
         }
@@ -32,7 +32,7 @@ export default function BookingPage() {
     if (id) {
         fetchMovieData();
     }
-  }, [id]); // FIX: Use 'id' in the dependency array
+  }, [id]);
 
   if (loading) {
     return <div className="p-8 text-center">Loading Movie...</div>;
